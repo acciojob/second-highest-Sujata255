@@ -1,32 +1,58 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>	
-	<script>
-		function secondHighest(arr) {
-			//Write your code here
-			
-		}
+<body>
+    <script>
+        function secondHighest(arr) {
+            if (arr.length < 2) return -Infinity;
 
-		function Main() {
-			var n = prompt("Enter the number of elements");
-			var arr = [];
-			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
-			}
-			alert(secondHighest(arr));
-		}
-		Main();
-	</script>
+            // Convert input to integers
+            arr = arr.map(Number);
 
-    <script type="text/javascript" src="./script.js">
-</script>
+            let first = -Infinity;
+            let second = -Infinity;
 
+            for (let num of arr) {
+                if (num > first) {
+                    second = first;
+                    first = num;
+                } else if (num > second && num < first) {
+                    second = num;
+                }
+            }
+
+            return second === -Infinity ? -Infinity : second;
+        }
+
+        function Main() {
+            var n = parseInt(prompt("Enter the number of elements"), 10);
+            if (isNaN(n) || n <= 0) {
+                alert("Invalid number of elements.");
+                return;
+            }
+
+            var arr = [];
+            for (var i = 0; i < n; i++) {
+                var element = parseInt(prompt("Enter element " + (i + 1)), 10);
+                if (!isNaN(element)) {
+                    arr.push(element);
+                } else {
+                    alert("Invalid input. Please enter a number.");
+                    return;
+                }
+            }
+
+            alert("The second highest element is: " + secondHighest(arr));
+        }
+
+        Main();
+    </script>
+
+    <script type="text/javascript" src="./script.js"></script>
 </body>
 
 </html>
