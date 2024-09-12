@@ -1,33 +1,25 @@
-//your JS code here. If required.
 function secondHighest(arr) {
-    // Handle edge cases
-    if (arr.length < 2) {
-        return -Infinity;
-    }
-    
-    let first = -Infinity;
-    let second = -Infinity;
-    
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] > first) {
-            second = first;
-            first = arr[i];
-        } else if (arr[i] > second && arr[i] < first) {
-            second = arr[i];
-        }
-    }
-    
-    // If second highest remains -Infinity, it means all elements were the same
-    if (second === -Infinity) {
-        return -Infinity;
-    }
-    
-    return second;
-}
+  // Handle edge cases: empty array, array with only one element, or all elements are the same
+  if (arr.length === 0 || arr.length === 1 || new Set(arr).size === 1) {
+    return -Infinity;
+  }
 
-// Examples
-console.log(secondHighest([5, 1, 2, 3, 4]));    // Output: 4
-console.log(secondHighest([-1, -2, -3, -4, -5])); // Output: -2
-console.log(secondHighest([]));                // Output: -Infinity
-console.log(secondHighest([1]));               // Output: -Infinity
-console.log(secondHighest([1, 1, 1, 1, 1])); 
+  // Find the highest element
+  let highest = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > highest) {
+      highest = arr[i];
+    }
+  }
+
+  // Find the second-highest element
+  let secondHighest = -Infinity;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < highest && arr[i] > secondHighest) {
+      secondHighest   
+ = arr[i];
+    }
+  }
+
+  return secondHighest;
+}
