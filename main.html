@@ -1,58 +1,20 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <link rel="stylesheet" href="styles.css">
+  <title>Second Highest Element</title>
 </head>
-
 <body>
-    <script>
-        function secondHighest(arr) {
-            if (arr.length < 2) return -Infinity;
+  <script>
+    // Your secondHighest function here
 
-            // Convert input to integers
-            arr = arr.map(Number);
+    // Example usage:
+    const array1 = [1, 2, 3, 4];
+    const array2 = [-1, -2, -3, -4];
+    const array3 = [1, 1, 1, 1];
 
-            let first = -Infinity;
-            let second = -Infinity;
-
-            for (let num of arr) {
-                if (num > first) {
-                    second = first;
-                    first = num;
-                } else if (num > second && num < first) {
-                    second = num;
-                }
-            }
-
-            return second === -Infinity ? -Infinity : second;
-        }
-
-        function Main() {
-            var n = parseInt(prompt("Enter the number of elements"), 10);
-            if (isNaN(n) || n <= 0) {
-                alert("Invalid number of elements.");
-                return;
-            }
-
-            var arr = [];
-            for (var i = 0; i < n; i++) {
-                var element = parseInt(prompt("Enter element " + (i + 1)), 10);
-                if (!isNaN(element)) {
-                    arr.push(element);
-                } else {
-                    alert("Invalid input. Please enter a number.");
-                    return;
-                }
-            }
-
-            alert("The second highest element is: " + secondHighest(arr));
-        }
-
-        Main();
-    </script>
-
-    <script type="text/javascript" src="./script.js"></script>
+    console.log(secondHighest(array1)); // Output: 3
+    console.log(secondHighest(array2)); // Output: -2
+    console.log(secondHighest(array3)); // Output: -Infinity
+  </script>
 </body>
-
 </html>
