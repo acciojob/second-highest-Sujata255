@@ -1,20 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Second Highest Element</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second Highest Element</title>
 </head>
 <body>
-  <script>
-    // Your secondHighest function here
+    <h1>Find the Second Highest Element</h1>
+    
+    <input type="text" id="arrayInput" placeholder="Enter an array (comma separated)" />
+    <button onclick="findSecondHighest()">Find Second Highest</button>
+    
+    <p id="result"></p>
 
-    // Example usage:
-    const array1 = [1, 2, 3, 4];
-    const array2 = [-1, -2, -3, -4];
-    const array3 = [1, 1, 1, 1];
+    <script>
+        function secondHighest(arr) {
+            // Edge cases
+            if (arr.length < 2) return -Infinity;
 
-    console.log(secondHighest(array1)); // Output: 3
-    console.log(secondHighest(array2)); // Output: -2
-    console.log(secondHighest(array3)); // Output: -Infinity
-  </script>
+            let first = -Infinity;
+            let second = -Infinity;
+
+            for (let num of arr) {
+                if (num > first) {
+                    second = first;
+                    first = num;
+                } else if (num > second && num < first) {
+                    second = num;
+                }
+            }
+
+            // If second is still -Infinity, it means there's no valid second-highest element
+            return second === -Infinity ? -Infinity : second;
+        }
+
+        function findSecondHighest() {
+            const input = document.getElementById("arrayInput").value;
+            const arr = input.split(',').map(Number);
+            const result = secondHighest(arr);
+            document.getElementById("result").textContent = "Second Highest: " + result;
+        }
+    </script>
 </body>
 </html>
